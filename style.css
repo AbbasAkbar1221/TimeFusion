@@ -1,0 +1,139 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #0d0d0d, #1a1a1a); /* Dark gradient background */
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    overflow: hidden; /* Prevent overflow from animations */
+}
+
+/* Container styling */
+.container {
+    text-align: center;
+    padding: 40px;
+    border-radius: 20px;
+    background: rgba(17, 17, 17, 0.8); /* Semi-transparent black for depth */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth background and scale transition */
+    backdrop-filter: blur(10px); /* Blur effect for a glassmorphic feel */
+}
+
+/* Hover effect for container */
+.container:hover {
+    transform: scale(1.02); /* Slightly scale up on hover */
+}
+
+/* Date styling */
+h1#date {
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, #0df, #f0f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    animation: fadeIn 1s; /* Fade-in animation */
+}
+
+/* Day styling */
+h1#day {
+    font-size: 1.5rem;
+    color: #fff; /* White color for the time */
+    margin-bottom: 20px;
+}
+
+/* Clock container styling */
+.clock {
+    display: flex;
+    justify-content: center; /* Centered clock display */
+    gap: 10px;
+}
+
+/* Individual time segments styling */
+.hour, .min, .sec, .amorpm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    background: #222;
+    color: #fff;
+    width: 80px;
+    height: 100px;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Hover effect for time segments */
+.hour:hover, .min:hover, .sec:hover, .amorpm:hover {
+    transform: scale(1.05); /* Slightly increase size on hover */
+    box-shadow: 0 0 25px rgba(255, 0, 255, 0.8); /* More pronounced shadow on hover */
+}
+
+/* Time segment number styling */
+.hr, .mn, .sc, .ampm {
+    font-size: 2.5rem; /* Increased font size for better visibility */
+    font-weight: bold;
+}
+
+/* Time segment label styling */
+.hour small, .min small, .sec small, .amorpm small {
+    margin-top: 5px;
+    font-size: 1rem; /* Adjusted for consistency */
+    color: #bbb;
+}
+
+/* Gradient border effect for time segments */
+.hour, .min, .sec, .amorpm {
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+}
+
+/* Before pseudo-element for gradient border */
+.hour::before, .min::before, .sec::before, .amorpm::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 2px;
+    background: linear-gradient(90deg, #0df, #f0f);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    mask-mode: alpha;
+}
+
+/* Fade-in animation for elements */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Media query for responsiveness */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px; /* Reduced padding on smaller screens */
+    }
+
+    .hour, .min, .sec, .amorpm {
+        width: 60px; /* Adjusted width for smaller screens */
+        height: 80px; /* Adjusted height for smaller screens */
+    }
+
+    .hr, .mn, .sc, .ampm {
+        font-size: 2rem; /* Adjust font size for smaller screens */
+    }
+}
